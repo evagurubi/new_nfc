@@ -16,19 +16,21 @@ import {
    View,
    TouchableOpacity
 } from 'react-native';
-import nfcManager from 'react-native-nfc-manager';
+import NfcManager from 'react-native-nfc-manager';
 import Reader from './Reader';
-import AndroidPrompt from './AndroidPrompt';
+import ScanPrompt from './ScanPrompt';
+
 
 
 const App = () => {
 
   const [hasNfc, setHasNfc] = useState(null);
-const promptRef = useRef();
+const promptRef = React.useRef();
 
-const checkNfc = async() => {const supported = await nfcManager.isSupported();
+const checkNfc = async() => {
+  const supported = await NfcManager.isSupported();
   if (supported) {
-    await nfcManager.start()
+    await NfcManager.start()
   }
   setHasNfc(supported)}
 
@@ -43,12 +45,13 @@ if (hasNfc === null) {
   return (
     <View style = {styles.wrapper}>
       <Text style={styles.titleText}>Your device doesn't support NFC</Text>
-<TouchableOpacity onPress = {() => {
+      <TouchableOpacity onPress = {() => {
   promptRef.current.setVisible(true);
 }}>
   <Text>TEST</Text>
 </TouchableOpacity>
-      <AndroidPrompt ref={promptRef}/>
+      <ScanPrompt ref={promptRef}/>
+    
     </View>
   );
 }
