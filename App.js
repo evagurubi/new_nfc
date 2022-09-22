@@ -25,7 +25,7 @@ import ScanPrompt from './ScanPrompt';
 const App = () => {
 
   const [hasNfc, setHasNfc] = useState(null);
-const promptRef = React.useRef();
+
 
 const checkNfc = async() => {
   const supported = await NfcManager.isSupported();
@@ -45,12 +45,7 @@ if (hasNfc === null) {
   return (
     <View style = {styles.wrapper}>
       <Text style={styles.titleText}>Your device doesn't support NFC</Text>
-      <TouchableOpacity onPress = {() => {
-  promptRef.current.setVisible(true);
-}}>
-  <Text>TEST</Text>
-</TouchableOpacity>
-      <ScanPrompt ref={promptRef}/>
+      
     
     </View>
   );

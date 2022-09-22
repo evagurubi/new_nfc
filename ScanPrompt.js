@@ -47,7 +47,7 @@ const styles = StyleSheet.create({
       },
     prompt: { 
         position: 'absolute',
-        bottom:0,
+        top:20,
         left: 20,
         width: Dimensions.get('window').width - 2 * 20,
         backgroundColor: 'white',
